@@ -106,17 +106,19 @@ input("Press Enter to see answer")
 #         w.write(i + '\n')
 answer = ''
 ans = []
+index = 0
 loop = 1
 for i in range(len(words)):
-    ans.append(str(i+1) + '. ' + words[i].ljust(40))
+    ans.append(str(i+1) + '. {:<50}'.format(words[i]))
 for i in range(len(phases)):
-    ans.append(str(i+1) + '. ' + phases[i].ljust(40))
+    ans.append(str(i+1) + '. {:<50}'.format(phases[i]))
 while len(ans) > 50:
-    index = 0
+    if index >= 50:
+        index = 0
     loop = loop + 1
-    while len(ans) > 50 and index < 50:
-        ans[index] = ans[index] + ans.pop(index+50)
-        index = index + 1
+    ans[index] = ans[index] + ans.pop(50)
+    index = index + 1
+
 for i in ans:
     answer = answer + i + '\n'
 
